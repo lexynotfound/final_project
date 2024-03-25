@@ -1,5 +1,7 @@
 package docs
 
+import "github.com/swaggo/swag"
+
 // Documentation API MY GRAM
 var Docs = `{
 	"schemes": {{ marshal .Schemes }},
@@ -8,7 +10,17 @@ var Docs = `{
 		"description": "{{escape .Description}}",
 		"title": "{{.Title}}",
 		"version": "{{.Version}}"
-	},
+		"termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+		},
+		"license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+		},
+    },
 	"host": "{{.Host}}",
 	"basePath": "{{.BasePath}}",
 	"paths": {
@@ -464,3 +476,19 @@ var Docs = `{
 		}
 	}
 }`
+
+// SwaggerInfo holds exported Swagger Info so clients can modify it
+var SwaggerInfo = &swag.Swagger{
+	Version:          "1.0.0",
+	BasePath:         "/",
+	Schemes:          []string{"http"},
+	Title:            "MyGram API",
+	Description:      "API Documentation for MyGram Application",
+	Host:             "localhost:8080",
+	InfoInstanceName: "swagger",
+	SwaggerTemplate:  Docs,
+}
+
+func init() {
+	swag.Register("MyGram", SwaggerInfo)
+}
