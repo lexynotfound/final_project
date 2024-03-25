@@ -478,17 +478,17 @@ var Docs = `{
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
-var SwaggerInfo = &swag.Swagger{
+var SwaggerInfo = swag.Swagger{
 	Version:          "1.0.0",
 	BasePath:         "/",
-	Schemes:          []string{"http"},
 	Title:            "MyGram API",
 	Description:      "API Documentation for MyGram Application",
 	Host:             "localhost:8080",
+	Schemes:          []string{"http", "https"},
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  Docs,
 }
 
 func init() {
-	swag.Register("MyGram", SwaggerInfo)
+	swag.Register("My Gram", SwaggerInfo)
 }
